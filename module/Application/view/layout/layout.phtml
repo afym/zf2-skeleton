@@ -1,12 +1,10 @@
 <?php echo $this->doctype(); ?>
 
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
-
     <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
-
     <!-- Le styles -->
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
                     ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
@@ -20,38 +18,16 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
+    <div>
 
       <?php echo $this->content; ?>
 
-      <hr>
-
       <footer>
-        <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+          <p>&copy; 2005 - 2012 by Skeleton made by <a href="https://github.com/afym" target="_blanck">afym</a>.
+             <?php echo $this->translate('All rights reserved.') ?></p>
       </footer>
 
-    </div> <!-- /container -->
-
+    </div>
   <?php echo $this->inlineScript() ?>
   </body>
 </html>
