@@ -13,6 +13,6 @@ Zend\Loader\AutoloaderFactory::factory(array(
     )
 ));
 
-// Run the application!
+// Run the application
 Zend\Mvc\Application::init(include 'config/application.php')->run();
 

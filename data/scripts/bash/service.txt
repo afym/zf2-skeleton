@@ -1,0 +1,4 @@
+<?php
+namespace {module};
+
+return array();

@@ -1,0 +1,9 @@
+
+Usage: php bash.php [-action] [options]
+
+-module:list Shows you a list of modules in your application.
+
+-module:create <name>:<type> Create a new module to use.
+
+<type> Could be mvc or consume
+

@@ -18,6 +18,8 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $user = new \User\User();
+        echo $user->getName();
         return new ViewModel();
     }
 
