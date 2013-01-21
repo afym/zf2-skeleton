@@ -1,4 +1,4 @@
 <?php
-namespace {module};
+namespace Common;
 
 return array();

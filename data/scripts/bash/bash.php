@@ -4,8 +4,7 @@
  * @copyright Copyright (c) 2005-2013 AFYM
  * @license   New BSD License
  */
-print_r($argv);
-
+//print_r($argv);
 if (count($argv) > 1) {
     $parseCommand = str_replace('-', '', $argv[1]);
 
@@ -30,35 +29,38 @@ if (count($argv) > 1) {
                         case 'consume':
                             moduleDirCreate($modulePathToCreate, $name);
                             createFiles($modulePathToCreate, $type, $name);
+                            registerModule($name);
+                            echo "Your module {$name} was created correctly.\n";
                             break;
                         case 'type':
                             break;
                         default :
-                            echo "You must type mvc or consume type.";
+                            echo "You must type mvc or consume type.\n";
                             break;
                     }
                 } else {
-                    echo "The module '{$name}' has already exist in your project.";
+                    echo "The module '{$name}' has already exist in your project.\n";
                 }
             } else {
-                echo "You must type a module and type (module:type)";
+                echo "You must type a module and type (module:type)\n";
             }
             break;
         default :
-            
+
             break;
     }
 } else {
     help();
 }
+
 function createModule()
 {
-    
+
 }
+
 function getModules()
 {
-    $application = include(__DIR__ . '/../../../config/application.php');
-    return $application['modules'];
+    return include(__DIR__ . '/../../../config/modules.config.php');
 }
 
 function listModule()
@@ -71,7 +73,7 @@ function listModule()
 
 function help()
 {
-    $help = file_get_contents(__DIR__ . '/help.txt');
+    $help = file_get_contents(__DIR__ . '/base/help.txt');
     echo $help;
 }
 
@@ -99,16 +101,16 @@ function createFiles($modulePathToCreate, $type, $name)
         );
 
         $contens = array(
-            file_get_contents(__DIR__ . '/service.txt'),
-            file_get_contents(__DIR__ . '/module.txt'),
-            file_get_contents(__DIR__ . '/module.simple.txt'),
-        );   
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/modules/consume.txt'),
+        );
     } else if ($type == 'mvc') {
-         $contens = array(
-            file_get_contents(__DIR__ . '/service.txt'),
-            file_get_contents(__DIR__ . '/module.txt'),
-            file_get_contents(__DIR__ . '/module.mvc.txt'),
-        ); 
+//         $contens = array(
+//            file_get_contents(__DIR__ . '/service.txt'),
+//            file_get_contents(__DIR__ . '/module.txt'),
+//            file_get_contents(__DIR__ . '/module.mvc.txt'),
+//        );
     }
 
     foreach ($paths as $pathKey => $path) {
@@ -118,5 +120,21 @@ function createFiles($modulePathToCreate, $type, $name)
         fclose($open);
     }
 }
-    //$hyphen = strpos($argument, '-');
-    //$colon  = strpos($argument, ':');
+
+function registerModule($name)
+{
+    $moduleFile = file_get_contents(__DIR__ . '/config/modules.txt');
+    $path = __DIR__ . '/../../../config/modules.config.php';
+    $modules = '';
+
+    foreach (getModules() as $module) {
+        $modules .= "'{$module}',\n";
+    }
+
+    $modules .= "    '{$name}',";
+
+    $open = fopen($path, 'r+');
+    $content = str_replace('{modules}', $modules, $moduleFile);
+    fwrite($open, $content);
+    fclose($open);
+}

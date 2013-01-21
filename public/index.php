@@ -3,7 +3,7 @@
 chdir(dirname(__DIR__));
 
 // Setup autoloading
-$external = include 'config/external.php';
+$external = include 'config/external.config.php';
 
 // Load ZF2
 include $external['zend'] . '/Zend/Loader/AutoloaderFactory.php';
@@ -14,5 +14,5 @@ Zend\Loader\AutoloaderFactory::factory(array(
 ));
 
 // Run the application
-Zend\Mvc\Application::init(include 'config/application.php')->run();
+Zend\Mvc\Application::init(include 'config/application.config.php')->run();
 

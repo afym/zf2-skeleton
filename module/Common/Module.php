@@ -1,5 +1,5 @@
 <?php
-namespace User;
+namespace Common;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 

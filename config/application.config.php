@@ -1,9 +1,6 @@
 <?php
 return array(
-    'modules' => array(
-        'Application',
-        'User',
-    ),
+    'modules' => include(__DIR__ . '/modules.config.php'),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
             'config/autoload/{,*.}{global,local}.php',
