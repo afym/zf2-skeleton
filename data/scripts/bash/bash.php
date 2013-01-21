@@ -1,6 +1,8 @@
 <?php
-/*
- * 
+/**
+ * @link      http://github.com/afym/zf2-skeleton
+ * @copyright Copyright (c) 2005-2013 AFYM
+ * @license   New BSD License
  */
 print_r($argv);
 
