@@ -1,0 +1,40 @@
+<?php
+namespace {module};
+
+return array(
+    'router' => array(
+        'routes' => array(
+            '{module-lower}' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/{module-lower}',
+                    'defaults' => array(
+                        '__NAMESPACE__' => '{module}\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
+    ),
+);

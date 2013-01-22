@@ -106,11 +106,22 @@ function createFiles($modulePathToCreate, $type, $name)
             file_get_contents(__DIR__ . '/modules/consume.txt'),
         );
     } else if ($type == 'mvc') {
-//         $contens = array(
-//            file_get_contents(__DIR__ . '/service.txt'),
-//            file_get_contents(__DIR__ . '/module.txt'),
-//            file_get_contents(__DIR__ . '/module.mvc.txt'),
-//        );
+        $paths = array(
+            $modulePathToCreate . '/config/' . 'service.config.php',
+            $modulePathToCreate . '/config/' . 'module.config.php',
+            $modulePathToCreate . '/config/' . 'helper.config.php',
+            $modulePathToCreate . '/config/' . 'controller.config.php',
+            $modulePathToCreate . '/config/' . 'plugin.config.php',
+            $modulePathToCreate . '/Module.php'
+        );
+
+        $contens = array(
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/bases/module.txt'),
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/modules/mvc.txt'),
+        );
     }
 
     foreach ($paths as $pathKey => $path) {
