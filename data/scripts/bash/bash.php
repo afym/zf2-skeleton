@@ -32,7 +32,12 @@ if (count($argv) > 1) {
                             registerModule($name);
                             echo "Your module {$name} was created correctly.\n";
                             break;
-                        case 'type':
+                        case 'mvc':
+                            moduleDirCreate($modulePathToCreate, $name, $type);
+                            createFiles($modulePathToCreate, $type, $name);
+                            registerModule($name);
+                            echo "Your module {$name} was created correctly.\n";
+                            break;
                             break;
                         default :
                             echo "You must type mvc or consume type.\n";
@@ -77,7 +82,7 @@ function help()
     echo $help;
 }
 
-function moduleDirCreate($modulePathToCreate, $name)
+function moduleDirCreate($modulePathToCreate, $name, $type = 'consume')
 {
     $paths = array(
         $modulePathToCreate,
@@ -86,6 +91,13 @@ function moduleDirCreate($modulePathToCreate, $name)
         $modulePathToCreate . '/src/' . $name,
         $modulePathToCreate . '/view'
     );
+
+    if ($type == 'mvc') {
+        $paths[] = $modulePathToCreate . '/src/' . $name . '/Controller';
+        $paths[] = $modulePathToCreate . '/view/' . $name;
+        $paths[] = $modulePathToCreate . '/view/' . $name . '/index';
+    }
+
     foreach ($paths as $path) {
         mkdir($path, 0777);
     }
@@ -95,8 +107,8 @@ function createFiles($modulePathToCreate, $type, $name)
 {
     if ($type == 'consume') {
         $paths = array(
-            $modulePathToCreate . '/config/' . 'service.config.php',
-            $modulePathToCreate . '/config/' . 'module.config.php',
+            $modulePathToCreate . '/config/service.config.php',
+            $modulePathToCreate . '/config/module.config.php',
             $modulePathToCreate . '/Module.php'
         );
 
@@ -107,19 +119,24 @@ function createFiles($modulePathToCreate, $type, $name)
         );
     } else if ($type == 'mvc') {
         $paths = array(
-            $modulePathToCreate . '/config/' . 'service.config.php',
-            $modulePathToCreate . '/config/' . 'module.config.php',
-            $modulePathToCreate . '/config/' . 'helper.config.php',
-            $modulePathToCreate . '/config/' . 'controller.config.php',
-            $modulePathToCreate . '/config/' . 'plugin.config.php',
+            $modulePathToCreate . '/config/service.config.php',
+            $modulePathToCreate . '/config/module.config.php',
+            $modulePathToCreate . '/config/helper.config.php',
+            $modulePathToCreate . '/config/controller.config.php',
+            $modulePathToCreate . '/config/plugin.config.php',
+            $modulePathToCreate . '/src/' . $name . '/Controller/IndexController.php',
+            $modulePathToCreate . '/view/' . strtolower($name) . '/index/index.phtml',
             $modulePathToCreate . '/Module.php'
         );
 
         $contens = array(
             file_get_contents(__DIR__ . '/bases/standar.txt'),
-            file_get_contents(__DIR__ . '/bases/module.txt'),
+            file_get_contents(__DIR__ . '/config/module.txt'),
             file_get_contents(__DIR__ . '/bases/standar.txt'),
             file_get_contents(__DIR__ . '/bases/standar.txt'),
+            file_get_contents(__DIR__ . '/config/controller.txt'),
+            file_get_contents(__DIR__ . '/bases/controller.txt'),
+            file_get_contents(__DIR__ . '/bases/view.txt'),
             file_get_contents(__DIR__ . '/modules/mvc.txt'),
         );
     }
@@ -127,7 +144,14 @@ function createFiles($modulePathToCreate, $type, $name)
     foreach ($paths as $pathKey => $path) {
         $open = fopen($path, 'a+');
         $content = str_replace('{module}', $name, $contens[$pathKey]);
-        fwrite($open, $content);
+
+        if ($type == 'mvc') {
+            $mvc = str_replace('{module-lower}', strtolower($name), $content);
+            fwrite($open, $mvc);
+        } else {
+            fwrite($open, $content);
+        }
+
         fclose($open);
     }
 }

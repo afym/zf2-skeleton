@@ -1,0 +1,9 @@
+<?php
+
+namespace {module};
+
+return array(
+    'invokables' => array(
+        '{module}\Controller\Index' => '{module}\Controller\IndexController',
+    ),
+);

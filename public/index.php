@@ -2,6 +2,9 @@
 /**
  * @documentation : https://packages.zendframework.com/docs/latest/manual/en/index.html#
  */
+// Error level
+error_reporting(E_ALL);
+ini_set('display_errors','On');
 // Up a directory
 chdir(dirname(__DIR__));
 
