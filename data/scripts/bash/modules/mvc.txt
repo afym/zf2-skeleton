@@ -2,6 +2,7 @@
 namespace {module};
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\Mvc\ModuleRouteListener;
 
 class Module implements AutoloaderProviderInterface
 {

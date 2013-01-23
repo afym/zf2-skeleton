@@ -9,7 +9,7 @@ return array(
                 'options' => array(
                     'route' => '/{module-lower}[/:controller[/:action]]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
+                        '__NAMESPACE__' => '{module}\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
                     ),
