@@ -3,6 +3,14 @@
 It is a simple implementation of Zend Framewor 2 for use of projects based on this framework. 
 The particularity of this implementation is that lets you create modules automatically by commands.
 
+### Route
+
+ This implementation allows you to work with Wildcard  type routing emulating 
+ the behavior of Zend Framework 1.
+
+ Example :
+
+ http://domain.com/module/controller/action/[param1/value1/param2/value2/..../paramn/valuen]
 
 ### Configurations
 
