@@ -4,7 +4,6 @@
  * @copyright Copyright (c) 2005-2013 AFYM
  * @license   New BSD License
  */
-//print_r($argv);
 if (count($argv) > 1) {
     $parseCommand = str_replace('-', '', $argv[1]);
 
@@ -30,13 +29,13 @@ if (count($argv) > 1) {
                             moduleDirCreate($modulePathToCreate, $name);
                             createFiles($modulePathToCreate, $type, $name);
                             registerModule($name);
-                            echo "Your module {$name} was created correctly.\n";
+                            echo "Your consume module {$name} was created correctly.\n";
                             break;
                         case 'mvc':
                             moduleDirCreate($modulePathToCreate, $name, $type);
                             createFiles($modulePathToCreate, $type, $name);
                             registerModule($name);
-                            echo "Your module {$name} was created correctly.\n";
+                            echo "Your mvc module {$name} was created correctly.\n";
                             break;
                             break;
                         default :
@@ -58,11 +57,6 @@ if (count($argv) > 1) {
     help();
 }
 
-function createModule()
-{
-
-}
-
 function getModules()
 {
     return include(__DIR__ . '/../../../config/modules.config.php');
@@ -78,7 +72,7 @@ function listModule()
 
 function help()
 {
-    $help = file_get_contents(__DIR__ . '/base/help.txt');
+    $help = file_get_contents(__DIR__ . '/bases/help.txt');
     echo $help;
 }
 
@@ -95,7 +89,7 @@ function moduleDirCreate($modulePathToCreate, $name, $type = 'consume')
     if ($type == 'mvc') {
         $paths[] = $modulePathToCreate . '/src/' . $name . '/Controller';
         $paths[] = $modulePathToCreate . '/view/' . $name;
-        $paths[] = $modulePathToCreate . '/view/' . $name . '/index';
+        $paths[] = $modulePathToCreate . '/view/' . strtolower($name) . '/index';
     }
 
     foreach ($paths as $path) {
@@ -133,8 +127,8 @@ function createFiles($modulePathToCreate, $type, $name)
             file_get_contents(__DIR__ . '/bases/standar.txt'),
             file_get_contents(__DIR__ . '/config/module.txt'),
             file_get_contents(__DIR__ . '/bases/standar.txt'),
-            file_get_contents(__DIR__ . '/bases/standar.txt'),
             file_get_contents(__DIR__ . '/config/controller.txt'),
+            file_get_contents(__DIR__ . '/bases/standar.txt'),
             file_get_contents(__DIR__ . '/bases/controller.txt'),
             file_get_contents(__DIR__ . '/bases/view.txt'),
             file_get_contents(__DIR__ . '/modules/mvc.txt'),
