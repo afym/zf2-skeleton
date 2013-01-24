@@ -88,7 +88,7 @@ function moduleDirCreate($modulePathToCreate, $name, $type = 'consume')
 
     if ($type == 'mvc') {
         $paths[] = $modulePathToCreate . '/src/' . $name . '/Controller';
-        $paths[] = $modulePathToCreate . '/view/' . $name;
+        $paths[] = $modulePathToCreate . '/view/' . strtolower($name);
         $paths[] = $modulePathToCreate . '/view/' . strtolower($name) . '/index';
     }
 
