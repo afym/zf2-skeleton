@@ -1,33 +1,12 @@
 <?php echo $this->doctype(); ?>
-
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
-    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
-    <!-- Le styles -->
-    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
-                    ->prependStylesheet($this->basePath() . '/css/style.css')
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
-
-    <!-- Scripts -->
-    <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                                  ->prependFile($this->basePath() . '/js/jquery-1.7.2.min.js') ?>
-
-  </head>
-
-  <body>
-    <div>
-
-      <?php echo $this->content; ?>
-
-      <footer>
-          <p>&copy; 2005 - 2012 by Skeleton made by <a href="https://github.com/afym" target="_blanck">afym</a>.
-             <?php echo $this->translate('All rights reserved.') ?></p>
-      </footer>
-
-    </div>
-  <?php echo $this->inlineScript() ?>
-  </body>
+<html>
+    <head>
+        <title>ZF2 Skeleton by AFYM</title>
+    </head>
+    <body>
+        <h1 style="color: yellowgreen; text-align: center;"> Zend Framework <span style="color: black;">2</span> Simple Skeleton</h1>
+        <div style="background-color: oldlace; border : 1px solid black; padding: 20px;">
+            <?php echo $this->content ?>
+        </div>
+    </body>
 </html>

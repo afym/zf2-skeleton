@@ -16,8 +16,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        echo "<pre>";
-        var_dump($this->getEvent()->getRouteMatch()->getParams());exit;
         return new ViewModel();
     }
 }

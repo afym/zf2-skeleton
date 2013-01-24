@@ -1,1 +1,1 @@
-<h1>Welcome to {module} MVC module.</h1>
+<h1 style="color : #FFCC00;">Welcome to {module} MVC module.</h1>
